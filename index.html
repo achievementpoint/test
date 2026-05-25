@@ -1,243 +1,1076 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Calendar with Repetitive National Holidays</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate Portal – FDP 2026 | BIT Mesra EEE</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --green-dark: #1a4731;
+    --green-mid: #2d6a4f;
+    --green-light: #40916c;
+    --gold-dark: #9a7b0a;
+    --gold-mid: #c49a1a;
+    --gold-light: #e8c84a;
+    --gold-pale: #fdf3c0;
+    --cream: #fdfaf2;
+    --cream-dark: #f5efe0;
+    --text-dark: #1c1c1c;
+    --text-mid: #3a3a3a;
+    --text-light: #6b6b6b;
+    --border: rgba(26,71,49,0.18);
+    --shadow-card: 0 4px 32px rgba(26,71,49,0.12), 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f8f9fa;
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ───────────────────────────────────── */
+  header {
+    background: var(--green-dark);
+    border-bottom: 3px solid var(--gold-mid);
+    padding: 0;
+  }
+
+  .header-top {
+    background: linear-gradient(135deg, #112e1f 0%, #1a4731 60%, #223d2c 100%);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .logo-shield {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+  }
+
+  .header-text {
+    flex: 1;
+  }
+
+  .header-text h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .header-text p {
+    font-size: 0.82rem;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 3px;
+    font-weight: 300;
+  }
+
+  .header-badge {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(228,200,74,0.4);
+    border-radius: 6px;
+    padding: 8px 16px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .header-badge .badge-label {
+    font-size: 0.68rem;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    display: block;
+  }
+
+  .header-badge .badge-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+    line-height: 1.2;
+  }
+
+  .header-nav {
+    background: var(--green-mid);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav-item {
+    padding: 11px 20px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .nav-item:hover, .nav-item.active {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold-light);
+  }
+
+  /* ── HERO BANNER ─────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, #1a4731 0%, #2d6a4f 100%);
+    padding: 48px 40px 42px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 40px solid rgba(228,200,74,0.08);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 30px solid rgba(228,200,74,0.05);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(228,200,74,0.15);
+    border: 1px solid rgba(228,200,74,0.35);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    display: inline-block;
+  }
+
+  .hero h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+
+  .hero h2 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  .hero-meta {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 40px 20px;
-    height: 100vh;
-    margin: 0;
+    gap: 28px;
+    flex-wrap: wrap;
   }
-  .calendar-container {
-    background: #fff;
-    padding: 24px 28px 28px 28px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px #ccc;
-    width: 320px;
-  }
-  .calendar-header {
+
+  .hero-meta-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    gap: 7px;
+    font-size: 0.84rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
   }
-  .calendar-header button {
-    background: #4e73df;
-    color: white;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
+
+  .hero-meta-item svg {
+    width: 15px; height: 15px;
+    stroke: var(--gold-light);
+    fill: none;
+    flex-shrink: 0;
   }
-  #month-year {
-    font-size: 20px;
-    font-weight: 500;
+
+  /* ── MAIN CONTENT ────────────────────────────── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
   }
-  #date-picker-label {
-    margin-bottom: 8px;
-    display: block;
+
+  /* ── SEARCH + LOOKUP CARD ─────────────────────── */
+  .lookup-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .lookup-card-header {
+    background: var(--green-dark);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .lookup-card-header svg {
+    width: 20px; height: 20px;
+    stroke: var(--gold-light);
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  .lookup-card-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: #333;
+    color: #fff;
+    letter-spacing: 0.02em;
   }
-  #date-picker {
-    width: 100%;
-    padding: 6px 10px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+
+  .lookup-card-body {
+    padding: 28px;
+  }
+
+  .search-row {
+    display: flex;
+    gap: 12px;
     margin-bottom: 20px;
-    box-sizing: border-box;
   }
-  .calendar-weekdays,
-  .calendar-dates {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-  }
-  .calendar-weekdays div {
-    text-align: center;
-    padding: 8px 0;
-    font-weight: bold;
-    color: #5d5d5d;
-  }
-  .calendar-dates div {
-    text-align: center;
-    padding: 10px 0;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.2s;
-    margin: 2px;
+
+  .search-wrap {
+    flex: 1;
     position: relative;
   }
-  .calendar-dates div.today {
-    background: #4e73df;
-    color: #fff;
-    font-weight: bold;
-  }
-  .calendar-dates div.holiday {
-    background: #fce4ec;
-    color: #c2185b;
-    font-weight: 600;
-  }
-  .calendar-dates div.holiday:hover::after {
-    content: attr(data-holiday-name);
+
+  .search-wrap svg {
     position: absolute;
-    bottom: 130%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #c2185b;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-    font-size: 12px;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    width: 18px; height: 18px;
+    stroke: var(--text-light);
+    fill: none;
     pointer-events: none;
-    z-index: 10;
   }
-  .calendar-dates div:hover:not(.empty):not(.holiday):not(.today) {
-    background: #e3e8fe;
+
+  .search-input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.97rem;
+    font-family: 'Lato', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
   }
-  .empty {
-    background: none !important;
-    cursor: default !important;
+
+  .search-input:focus {
+    border-color: var(--green-light);
+    box-shadow: 0 0 0 3px rgba(64,145,108,0.12);
+    background: #fff;
+  }
+
+  .search-input::placeholder { color: var(--text-light); }
+
+  .btn-find {
+    padding: 12px 26px;
+    background: var(--green-dark);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .btn-find:hover { background: var(--green-mid); }
+  .btn-find:active { transform: scale(0.97); }
+
+  /* Result panel */
+  .result-panel {
+    display: none;
+    background: linear-gradient(135deg, #f9fdf9 0%, var(--cream-dark) 100%);
+    border: 1.5px solid rgba(64,145,108,0.3);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .result-panel::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--gold-mid), var(--green-light));
+  }
+
+  .result-panel.active { display: block; }
+  .result-panel.not-found {
+    display: block;
+    border-color: rgba(200,80,80,0.25);
+    background: #fdf8f8;
+  }
+  .result-panel.not-found::before { background: #c85050; }
+
+  .result-name {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+
+  .result-sub {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+
+  .result-sub strong {
+    color: var(--gold-dark);
+    font-weight: 700;
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-mid);
+    color: var(--green-dark);
+    border: none;
+    border-radius: 8px;
+    padding: 11px 22px;
+    font-size: 0.88rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    text-decoration: none;
+  }
+
+  .btn-download svg {
+    width: 16px; height: 16px;
+    stroke: var(--green-dark);
+    fill: none;
+  }
+
+  .btn-download:hover { background: var(--gold-light); }
+  .btn-download:active { transform: scale(0.97); }
+
+  .not-found-msg {
+    color: #a33;
+    font-size: 0.93rem;
+  }
+
+  /* ── PARTICIPANT LIST ────────────────────────── */
+  .list-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .list-card-header {
+    background: var(--green-dark);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .list-card-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .list-card-header-left svg {
+    width: 20px; height: 20px;
+    stroke: var(--gold-light);
+    fill: none;
+  }
+
+  .list-card-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .count-badge {
+    background: rgba(228,200,74,0.2);
+    border: 1px solid rgba(228,200,74,0.4);
+    color: var(--gold-light);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .alpha-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 14px 20px;
+    background: var(--cream-dark);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .alpha-btn {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--text-light);
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .alpha-btn:hover {
+    background: rgba(26,71,49,0.08);
+    color: var(--green-dark);
+  }
+
+  .alpha-btn.has-entries {
+    color: var(--green-dark);
+    border-color: rgba(26,71,49,0.2);
+    background: rgba(26,71,49,0.04);
+  }
+
+  .alpha-btn.active {
+    background: var(--green-dark);
+    color: var(--gold-light);
+    border-color: var(--green-dark);
+  }
+
+  .alpha-btn.disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .list-body {
+    padding: 8px 0;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+
+  .list-body::-webkit-scrollbar { width: 5px; }
+  .list-body::-webkit-scrollbar-track { background: var(--cream-dark); }
+  .list-body::-webkit-scrollbar-thumb { background: var(--green-light); border-radius: 4px; }
+
+  .letter-group {
+    padding: 0;
+  }
+
+  .letter-heading {
+    position: sticky; top: 0;
+    background: var(--cream-dark);
+    padding: 6px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  .letter-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .participant-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 24px;
+    border-bottom: 1px solid rgba(26,71,49,0.06);
+    transition: background 0.15s;
+    gap: 12px;
+  }
+
+  .participant-row:hover {
+    background: rgba(26,71,49,0.035);
+  }
+
+  .participant-row:last-child { border-bottom: none; }
+
+  .p-num {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    min-width: 28px;
+    font-weight: 300;
+  }
+
+  .p-name {
+    flex: 1;
+    font-size: 0.94rem;
+    color: var(--text-dark);
+    font-weight: 400;
+  }
+
+  .p-name strong { color: var(--green-dark); font-weight: 700; }
+
+  .btn-row-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid rgba(26,71,49,0.25);
+    border-radius: 6px;
+    padding: 5px 13px;
+    font-size: 0.78rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: var(--green-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .btn-row-dl:hover {
+    background: var(--green-dark);
+    color: var(--gold-light);
+    border-color: var(--green-dark);
+  }
+
+  .btn-row-dl svg {
+    width: 13px; height: 13px;
+    stroke: currentColor;
+    fill: none;
+  }
+
+  /* ── TOAST ───────────────────────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 28px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--green-dark);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border-left: 4px solid var(--gold-mid);
+    font-size: 0.9rem;
+    font-family: 'Lato', sans-serif;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999;
+    white-space: nowrap;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    background: var(--green-dark);
+    border-top: 3px solid var(--gold-mid);
+    padding: 24px 40px;
+    text-align: center;
+  }
+
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+
+  .footer-divider {
+    width: 1px; height: 28px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .footer-text {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .footer-text a {
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+
+  .sponsors {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .sponsor-tag {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  /* Responsiveness */
+  @media (max-width: 640px) {
+    .header-top { padding: 14px 16px; }
+    .header-badge { display: none; }
+    .hero { padding: 32px 16px 28px; }
+    .hero h2 { font-size: 1.9rem; }
+    main { padding: 24px 12px 40px; }
+    .lookup-card-body { padding: 18px; }
+    .search-row { flex-direction: column; }
+    .btn-find { width: 100%; justify-content: center; display: flex; }
+    .list-card-header { padding: 14px 16px; }
+    .alpha-nav { padding: 10px 12px; }
+    .participant-row { padding: 10px 14px; }
+    .letter-heading { padding: 6px 14px; }
+    .hero-meta { gap: 14px; }
   }
 </style>
 </head>
 <body>
-  <div class="calendar-container">
-    <label id="date-picker-label" for="date-picker">Select Date:</label>
-    <input type="date" id="date-picker" />
-    <div class="calendar-header">
-      <button id="prev">&#8592;</button>
-      <span id="month-year"></span>
-      <button id="next">&#8594;</button>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <svg class="logo-shield" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 4 L58 16 L58 36 C58 50 32 60 32 60 C32 60 6 50 6 36 L6 16 Z" fill="rgba(228,200,74,0.15)" stroke="#c49a1a" stroke-width="2"/>
+      <circle cx="32" cy="32" r="14" fill="none" stroke="#c49a1a" stroke-width="1.5"/>
+      <text x="32" y="37" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="13" font-weight="700" fill="#e8c84a">BIT</text>
+    </svg>
+    <div class="header-text">
+      <h1>Birla Institute of Technology Mesra, Ranchi</h1>
+      <p>Department of Electrical &amp; Electronics Engineering</p>
     </div>
-    <div class="calendar-weekdays" id="calendar-weekdays"></div>
-    <div class="calendar-dates" id="calendar-dates"></div>
+    <div class="header-badge">
+      <span class="badge-label">Platinum Jubilee</span>
+      <span class="badge-val">70<sup style="font-size:0.6em">th</sup> Year</span>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <div class="nav-item active">Certificate Portal</div>
+    <div class="nav-item" onclick="window.open('https://fdpeee26.bitmesra.ac.in/','_blank')">FDP Website</div>
+    <div class="nav-item" onclick="window.open('https://www.bitmesra.ac.in/','_blank')">BIT Mesra</div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Faculty Development Programme 2026</div>
+    <h2>Certificate of <em>Participation</em></h2>
+    <p class="hero-sub">
+      Emerging Control &amp; Digital Technologies for Sustainable Green Energy Systems<br>
+      Search or browse below to download your certificate.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        18th – 22nd May 2026
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span id="participant-count">—</span> Participants
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        5-Day Programme
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- LOOKUP CARD -->
+  <div class="lookup-card">
+    <div class="lookup-card-header">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <h3>Find Your Certificate</h3>
+    </div>
+    <div class="lookup-card-body">
+      <div class="search-row">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" class="search-input" id="searchInput" placeholder="Type your name to search…" autocomplete="off" spellcheck="false">
+        </div>
+        <button class="btn-find" onclick="findCertificate()">Search</button>
+      </div>
+
+      <!-- Autocomplete suggestions -->
+      <div id="suggestions" style="display:none; border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-top:-14px; margin-bottom:16px; max-height:220px; overflow-y:auto; background:#fff; box-shadow:var(--shadow-card);"></div>
+
+      <!-- Result -->
+      <div id="resultPanel" class="result-panel">
+        <div id="resultContent"></div>
+      </div>
+    </div>
   </div>
 
+  <!-- PARTICIPANT LIST -->
+  <div class="list-card">
+    <div class="list-card-header">
+      <div class="list-card-header-left">
+        <svg viewBox="0 0 24 24" stroke-width="1.8"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        <h3>All Participants</h3>
+      </div>
+      <span class="count-badge" id="listCount">Loading…</span>
+    </div>
+
+    <!-- Alphabet navigator -->
+    <div class="alpha-nav" id="alphNav"></div>
+
+    <!-- List -->
+    <div class="list-body" id="listBody"></div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:#fff;">FDP 2026 — EEE Department</div>
+      <div class="footer-divider"></div>
+      <div style="font-size:0.82rem; color:rgba(255,255,255,0.55);">Birla Institute of Technology Mesra, Ranchi – 835215</div>
+    </div>
+    <div class="sponsors">
+      <span class="sponsor-tag">JREDA</span>
+      <span class="sponsor-tag">GAIL</span>
+      <span class="sponsor-tag">Typhoon HIL</span>
+      <span class="sponsor-tag">Creative Robotics</span>
+      <span class="sponsor-tag">OPAL-RT Technologies</span>
+    </div>
+    <div class="footer-text" style="margin-top:12px;">
+      Coordinator: <strong style="color:rgba(255,255,255,0.7)">Dr. Gauri Shanker Gupta</strong> &nbsp;|&nbsp;
+      Chairman: <strong style="color:rgba(255,255,255,0.7)">Dr. Sudhanshu Kumar Mishra</strong>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
 <script>
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const weekdayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const PARTICIPANTS_RAW = [
+  "Razik Rehmani","Lily Lakra","Ruchi Kujur","Swati Minj","Kapil Deo Mahto",
+  "Sapna Kumari","Kumar Mayank","Bhishmdev Mandal","Mohit Kumar Gupta","Ashish Srivastava",
+  "Subhash Kumar","Animesh Kumar","Sanjay Prasad","Dr. Sarita Kumari","Partha Pratim Das",
+  "Partha Paul","Ram Kunwar Mahto","Prateem Pan","Utpal Kumar Ray","Chanchal kumar",
+  "Rajesh Yadav","Sourav Dutta","Ramesh Kumar","Dr. Avinash Kumar","Diksha kumari",
+  "Sawarya Chandra","Dr Bikash Chandra Saha","Krishna Modi","Priya Kumari Gope","Vishwajit Choudhary",
+  "Amber Saurav Kunal","Deepak Kumar","Rani Kumari","Ravi Singh Sengar","Khalid Ashraf",
+  "Dr. Durgesh Kumar","Rohit Kumar Mahto","Pushpalata Khalkho","Babita Kumari","Abhijeet Anand",
+  "Dhananjay Roy","Rajeshwar Mishra","Dr. Mohammad Junaid Akhtar","DILIP Kumar","Babli Kumari",
+  "Avanish Kumar","Anup Kumar","Shailendra Kumar choudhary","Swarna Aishwarya Twinkle","Deep Shekhar Acharya",
+  "Piyush Kumar Ojha","Bimlesh Kumar Singh","Sartaj Quraisi","Alok Priyadarshi","Saanhita Roy Achay",
+  "Dr. Prabhat Kumar Ranjan","Anjan Kumar Tiwary","Savitri kumari","Vinay Prakash Chaudhary","MD. Farooque Azam",
+  "Benjamin Raj","Dr. Dhiraj Kumar Kushvaha","Kashyap Shah","Saurav Kumar","Harsh Ranjan",
+  "Chandrashekhar Lavania","Sutapa Mondal","Hareshwar prasad","Nisha Rani","KRISHNA MOHAN PANDEY",
+  "Dr.H. Joseph Prabhakar Williams","Dr D M Srinivasa","Dr. Vinod Choudhary","Ankita Agarwal","Dr. Deo Karan Ram",
+  "Dr.S.Kaliappan","Dr. Anisa Khanam","Sonu Kumar","Dr. Silpa Mandal","Satyendra Kumar Jha",
+  "Sanhita Roy Acharya","Brundavanam Seshasai","Nirupam Nath Choudhury","Dr Abhishek Thakur","Dr.L.Harish Kumar",
+  "Susmita Deb","Sangeeta Modi","Smriti Bharti","Dr. Debika Debnath","Meghana A",
+  "Dr. Kapil Chopra","Dr.Mohammedvaris Sannu Khan","Vinodini Bhushan Bhole","Dr. Neeraj Priyadarshi","Anant Kumar",
+  "Nitin Kumar","Shobha Singh","Alivarani Mohapatra","Surbhi Sharma","M Vijay Kumar",
+  "Jyoti Singh","Prashant A Athavale","Ravichandiran M","Dr N Prakash","Silpa Mandal",
+  "Purnima Sharma","Ms.Susmita Kumari yadav","Palaniyappan S","Mansi Goel","Rajnandani Yadav",
+  "Dr Piyush Sharma","BABY Saroja Dangeti","Kalpana Anumala","Banoth Punnam Chand","Yadagiri J",
+  "Bommireddy Laxminarayana","Thirupathi Sirisilla","Sandagala Rajkumar","S K Himabindu","Dr R Chander",
+  "Naina Singh","Soma Bhattacharya","Dr Sarita Samal","Satya Prakash Nirala","Faheem Ahmad",
+  "Vijeta Prasad","Shiva Shankar","Konda Srinivas","Vijeta P","Soham Pal",
+  "Pooja Sharma","N.Bhargavi","Kumudlata Bhaskar","Abhishek Thakur","Pravir Yadav",
+  "Sanjukta Chatterjee","Jay Raj","Vivek Kumar Srivastava","Dr.K.Swarna Latha","Dr VINOD ADLA",
+  "Arush Singh","Ankita Chandola","Mohini Ramesh Bhadikar","Dr. Sushanta Kumar Sahu","Om Prakash Sinha",
+  "Bharat S sudame","Nitin chand","Ms. Nikita M. Malwar","Shital R Bakal","Misbah Khan",
+  "Susmita Paul","Shubhangini Kamble","Dr. Abhinandan Kumar","Abhishek Kumar Singh","Dr. Randhir Kumar",
+  "Manish Kumar","Lalan Kumar Paswan","Shivam Shekhar","Anupam Raj Minz","Vaibhow Tigga","Aman Shankar"
+];
 
-  // Repetitive national holidays defined by month and day (1-based day)
-  // Format: {month: 0-11, day: 1-31, name: "Holiday Name"}
-  const repetitiveHolidays = [
-    { month: 0, day: 1, name: "New Year" },         // January 01
-    { month: 0, day: 26, name: "Republic Day" },         // January 26
-    { month: 1, day: 12, name: "Guru Ravidash Jayanti" },         // Feb 12
-    { month: 7, day: 15, name: "Independence Day" },    // August 15
-    { month: 9, day: 2, name: "Gandhi Jayanti" },       // October 2
-    { month: 11, day: 25, name: "Christmas Day" }       // December 25
-    // Add more repetitive holidays here
-  ];
+// Normalize for sorting: strip prefixes like Dr., Ms., Mr., strip spaces, lowercase
+function sortKey(name) {
+  return name
+    .replace(/^(dr\.?|dr|ms\.?|mr\.?|mrs\.?)\s*/i, '')
+    .trim()
+    .toLowerCase();
+}
 
-  const calendarWeekdays = document.getElementById("calendar-weekdays");
-  const calendarDates = document.getElementById("calendar-dates");
-  const monthYear = document.getElementById("month-year");
-  const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
-  const datePicker = document.getElementById("date-picker");
+// Sort alphabetically by normalized name
+const PARTICIPANTS = [...PARTICIPANTS_RAW].sort((a, b) => {
+  const ka = sortKey(a), kb = sortKey(b);
+  return ka.localeCompare(kb, 'en', { sensitivity: 'base' });
+});
 
-  let currentDate = new Date();
+document.getElementById('participant-count').textContent = PARTICIPANTS.length;
+document.getElementById('listCount').textContent = PARTICIPANTS.length + ' participants';
 
-  function formatDate(date) {
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, "0");
-    const dd = String(date.getDate()).padStart(2, "0");
-    return `${yyyy}-${mm}-${dd}`;
-  }
-
-  function isRepetitiveHoliday(date) {
-    return repetitiveHolidays.find(holiday =>
-      holiday.month === date.getMonth() &&
-      holiday.day === date.getDate()
-    );
-  }
-
-  function renderCalendar(date) {
-    monthYear.textContent = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
-
-    // Render weekdays only once
-    if (calendarWeekdays.children.length === 0) {
-      weekdayNames.forEach(day => {
-        const dayCell = document.createElement("div");
-        dayCell.textContent = day;
-        calendarWeekdays.appendChild(dayCell);
-      });
-    }
-
-    calendarDates.innerHTML = "";
-    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-
-    // Empty slots before first day of month
-    for (let i = 0; i < firstDay.getDay(); i++) {
-      const emptyCell = document.createElement("div");
-      emptyCell.classList.add("empty");
-      calendarDates.appendChild(emptyCell);
-    }
-
-    for (let d = 1; d <= lastDay.getDate(); d++) {
-      const dayCell = document.createElement("div");
-      dayCell.textContent = d;
-
-      const currentDayDate = new Date(date.getFullYear(), date.getMonth(), d);
-
-      // Highlight today
-      const today = new Date();
-      if (
-        d === today.getDate() &&
-        date.getMonth() === today.getMonth() &&
-        date.getFullYear() === today.getFullYear()
-      ) {
-        dayCell.classList.add("today");
-      }
-
-      // Highlight repetitive holidays
-      const holiday = isRepetitiveHoliday(currentDayDate);
-      if (holiday) {
-        dayCell.classList.add("holiday");
-        dayCell.setAttribute("data-holiday-name", holiday.name);
-      }
-
-      calendarDates.appendChild(dayCell);
-    }
-
-    // Sync date picker to current calendar date
-    datePicker.value = formatDate(date);
-  }
-
-  prevBtn.addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar(currentDate);
+// Group by first letter of sort key
+function getGroups() {
+  const groups = {};
+  PARTICIPANTS.forEach((name, idx) => {
+    const letter = sortKey(name)[0].toUpperCase();
+    if (!groups[letter]) groups[letter] = [];
+    groups[letter].push({ name, idx: idx + 1 });
   });
+  return groups;
+}
 
-  nextBtn.addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar(currentDate);
-  });
-
-  datePicker.addEventListener("change", (e) => {
-    const selected = new Date(e.target.value);
-    if (!isNaN(selected)) {
-      currentDate = selected;
-      renderCalendar(currentDate);
+// Build alphabet nav
+function buildAlphaNav() {
+  const groups = getGroups();
+  const nav = document.getElementById('alphNav');
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  letters.forEach(l => {
+    const btn = document.createElement('button');
+    btn.className = 'alpha-btn' + (groups[l] ? ' has-entries' : ' disabled');
+    btn.textContent = l;
+    btn.dataset.letter = l;
+    if (groups[l]) {
+      btn.onclick = () => scrollToLetter(l, btn);
     }
+    nav.appendChild(btn);
   });
+}
 
-  // Initial calendar render
-  renderCalendar(currentDate);
+function scrollToLetter(letter, btn) {
+  document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const heading = document.getElementById('lh-' + letter);
+  if (heading) heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Build list
+function buildList() {
+  const groups = getGroups();
+  const body = document.getElementById('listBody');
+  const letters = Object.keys(groups).sort();
+  let globalIdx = 1;
+
+  letters.forEach(letter => {
+    const group = document.createElement('div');
+    group.className = 'letter-group';
+
+    const heading = document.createElement('div');
+    heading.className = 'letter-heading';
+    heading.id = 'lh-' + letter;
+    heading.textContent = letter;
+    group.appendChild(heading);
+
+    groups[letter].forEach(({ name }) => {
+      const row = document.createElement('div');
+      row.className = 'participant-row';
+
+      const numEl = document.createElement('span');
+      numEl.className = 'p-num';
+      numEl.textContent = globalIdx++;
+
+      const nameEl = document.createElement('span');
+      nameEl.className = 'p-name';
+      nameEl.textContent = name;
+
+      const dlBtn = document.createElement('button');
+      dlBtn.className = 'btn-row-dl';
+      dlBtn.innerHTML = `<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Get Cert`;
+      dlBtn.onclick = () => triggerDownload(name);
+
+      row.appendChild(numEl);
+      row.appendChild(nameEl);
+      row.appendChild(dlBtn);
+      group.appendChild(row);
+    });
+
+    body.appendChild(group);
+  });
+}
+
+// Search & autocomplete
+const searchInput = document.getElementById('searchInput');
+const suggestions = document.getElementById('suggestions');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (q.length < 2) { suggestions.style.display = 'none'; return; }
+
+  const matches = PARTICIPANTS.filter(p =>
+    p.toLowerCase().includes(q) || sortKey(p).includes(q)
+  ).slice(0, 8);
+
+  if (matches.length === 0) { suggestions.style.display = 'none'; return; }
+
+  suggestions.innerHTML = '';
+  matches.forEach(name => {
+    const item = document.createElement('div');
+    item.style.cssText = 'padding:10px 16px; cursor:pointer; font-size:0.93rem; border-bottom:1px solid rgba(26,71,49,0.08); color:#1c1c1c; transition:background 0.1s;';
+    item.textContent = name;
+    item.addEventListener('mouseenter', () => item.style.background = 'rgba(26,71,49,0.05)');
+    item.addEventListener('mouseleave', () => item.style.background = '');
+    item.onclick = () => {
+      searchInput.value = name;
+      suggestions.style.display = 'none';
+      showResult(name, true);
+    };
+    suggestions.appendChild(item);
+  });
+  suggestions.style.display = 'block';
+});
+
+document.addEventListener('click', e => {
+  if (!suggestions.contains(e.target) && e.target !== searchInput) {
+    suggestions.style.display = 'none';
+  }
+});
+
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') { suggestions.style.display = 'none'; findCertificate(); }
+});
+
+function findCertificate() {
+  const q = searchInput.value.trim();
+  if (!q) return;
+  suggestions.style.display = 'none';
+
+  const match = PARTICIPANTS.find(p =>
+    p.toLowerCase() === q.toLowerCase() ||
+    sortKey(p) === sortKey(q)
+  ) || PARTICIPANTS.find(p =>
+    p.toLowerCase().includes(q.toLowerCase())
+  );
+
+  showResult(match || null, !!match);
+}
+
+function showResult(name, found) {
+  const panel = document.getElementById('resultPanel');
+  const content = document.getElementById('resultContent');
+
+  panel.classList.remove('active', 'not-found');
+
+  if (found && name) {
+    panel.classList.add('active');
+    content.innerHTML = `
+      <div class="result-name">${name}</div>
+      <div class="result-sub">Participant in <strong>FDP 2026</strong> — Emerging Control &amp; Digital Technologies for Sustainable Green Energy Systems | 18–22 May 2026</div>
+      <button class="btn-download" onclick="triggerDownload('${name.replace(/'/g,"\\'")}')">
+        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Certificate
+      </button>
+    `;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    panel.classList.add('not-found');
+    content.innerHTML = `<p class="not-found-msg"><strong>No participant found</strong> matching "<em>${searchInput.value}</em>". Please check the spelling or browse the list below.</p>`;
+  }
+}
+
+// Name → filename map (v2 — certificate number based, unique filenames)
+const CERT_FILES = {"Abhijeet Anand":"CERT_1001.pdf","Abhishek Kumar Singh":"CERT_1002.pdf","Abhishek Thakur":"CERT_1003.pdf","Alivarani Mohapatra":"CERT_1004.pdf","Alok Priyadarshi":"CERT_1005.pdf","Aman Shankar":"CERT_1006.pdf","Amber Saurav Kunal":"CERT_1007.pdf","Anant Kumar":"CERT_1008.pdf","Animesh Kumar":"CERT_1009.pdf","Anjan Kumar Tiwary":"CERT_1010.pdf","Ankita Agarwal":"CERT_1011.pdf","Ankita Chandola":"CERT_1012.pdf","Anup Kumar":"CERT_1013.pdf","Anupam Raj Minz":"CERT_1014.pdf","Arush Singh":"CERT_1015.pdf","Ashish Srivastava":"CERT_1016.pdf","Avanish Kumar":"CERT_1017.pdf","Babita Kumari":"CERT_1018.pdf","Babli Kumari":"CERT_1019.pdf","Baby Saroja Dangeti":"CERT_1020.pdf","Banoth Punnam Chand":"CERT_1021.pdf","Benjamin Raj":"CERT_1022.pdf","Bharat S sudame":"CERT_1023.pdf","Bhishmdev Mandal":"CERT_1024.pdf","Bimlesh Kumar Singh":"CERT_1025.pdf","Bommireddy Laxminarayana":"CERT_1026.pdf","Brundavanam Seshasai":"CERT_1027.pdf","Chanchal kumar":"CERT_1028.pdf","Chandrashekhar Lavania":"CERT_1029.pdf","Deep Shekhar Acharya":"CERT_1030.pdf","Deepak Kumar":"CERT_1031.pdf","Dhananjay Roy":"CERT_1032.pdf","Diksha kumari":"CERT_1033.pdf","Dilip Kumar":"CERT_1034.pdf","Dr Abhishek Thakur":"CERT_1035.pdf","Dr Bikash Chandra Saha":"CERT_1036.pdf","Dr D M Srinivasa":"CERT_1037.pdf","Dr N Prakash":"CERT_1038.pdf","Dr Piyush Sharma":"CERT_1039.pdf","Dr R Chander":"CERT_1040.pdf","Dr Sarita Samal":"CERT_1041.pdf","Dr VINOD ADLA":"CERT_1042.pdf","Dr. Abhinandan Kumar":"CERT_1043.pdf","Dr. Anisa Khanam":"CERT_1044.pdf","Dr. Avinash Kumar":"CERT_1045.pdf","Dr. Debika Debnath":"CERT_1046.pdf","Dr. Deo Karan Ram":"CERT_1047.pdf","Dr. Dhiraj Kumar Kushvaha":"CERT_1048.pdf","Dr. Durgesh Kumar":"CERT_1049.pdf","Dr. Kapil Chopra":"CERT_1050.pdf","Dr. Mohammad Junaid Akhtar":"CERT_1051.pdf","Dr. Neeraj Priyadarshi":"CERT_1052.pdf","Dr. Prabhat Kumar Ranjan":"CERT_1053.pdf","Dr. Randhir Kumar":"CERT_1054.pdf","Dr. Sarita Kumari":"CERT_1055.pdf","Dr. Silpa Mandal":"CERT_1056.pdf","Dr. Sushanta Kumar Sahu":"CERT_1057.pdf","Dr. Vinod Choudhary":"CERT_1058.pdf","Dr.H. Joseph Prabhakar Williams":"CERT_1059.pdf","Dr.K.Swarna Latha":"CERT_1060.pdf","Dr.L.Harish Kumar":"CERT_1061.pdf","Dr.Mohammedvaris Sannu Khan":"CERT_1062.pdf","Dr.S.Kaliappan":"CERT_1063.pdf","Faheem Ahmad":"CERT_1064.pdf","Hareshwar prasad":"CERT_1065.pdf","Harsh Ranjan":"CERT_1066.pdf","Jay Raj":"CERT_1067.pdf","Jyoti Singh":"CERT_1068.pdf","Kalpana Anumala":"CERT_1069.pdf","Kapil Deo Mahto":"CERT_1070.pdf","Kashyap Shah":"CERT_1071.pdf","Khalid Ashraf":"CERT_1072.pdf","Konda Srinivas":"CERT_1073.pdf","Krishna Modi":"CERT_1074.pdf","Krishna Mohan Pandey":"CERT_1075.pdf","Kumar Mayank":"CERT_1076.pdf","Kumudlata Bhaskar":"CERT_1077.pdf","Lalan Kumar Paswan":"CERT_1078.pdf","Lily Lakra":"CERT_1079.pdf","M Vijay Kumar":"CERT_1080.pdf","Manish Kumar":"CERT_1081.pdf","Mansi Goel":"CERT_1082.pdf","MD. Farooque Azam":"CERT_1083.pdf","Meghana A":"CERT_1084.pdf","Misbah Khan":"CERT_1085.pdf","Mohini Ramesh Bhadikar":"CERT_1086.pdf","Mohit Kumar Gupta":"CERT_1087.pdf","Ms. Nikita M. Malwar":"CERT_1088.pdf","Ms.Susmita Kumari yadav":"CERT_1089.pdf","N.Bhargavi":"CERT_1090.pdf","Naina Singh":"CERT_1091.pdf","Nirupam Nath Choudhury":"CERT_1092.pdf","Nisha Rani":"CERT_1093.pdf","Nitin chand":"CERT_1094.pdf","Nitin Kumar":"CERT_1095.pdf","Om Prakash Sinha":"CERT_1096.pdf","Palaniyappan S":"CERT_1097.pdf","Partha Paul":"CERT_1098.pdf","Partha Pratim Das":"CERT_1099.pdf","Piyush Kumar Ojha":"CERT_1100.pdf","Pooja Sharma":"CERT_1101.pdf","Prashant A Athavale":"CERT_1102.pdf","Prateem Pan":"CERT_1103.pdf","Pravir Yadav":"CERT_1104.pdf","Priya Kumari Gope":"CERT_1105.pdf","Purnima Sharma":"CERT_1106.pdf","Pushpalata Khalkho":"CERT_1107.pdf","Rajesh Yadav":"CERT_1108.pdf","Rajeshwar Mishra":"CERT_1109.pdf","Rajnandani Yadav":"CERT_1110.pdf","Ram Kunwar Mahto":"CERT_1111.pdf","Ramesh Kumar":"CERT_1112.pdf","Rani Kumari":"CERT_1113.pdf","Ravi Singh Sengar":"CERT_1114.pdf","Ravichandiran M":"CERT_1115.pdf","Razik Rehmani":"CERT_1116.pdf","Rohit Kumar Mahto":"CERT_1117.pdf","Ruchi Kujur":"CERT_1118.pdf","S K Himabindu":"CERT_1119.pdf","Saanhita Roy Achay":"CERT_1120.pdf","Sandagala Rajkumar":"CERT_1121.pdf","Sangeeta Modi":"CERT_1122.pdf","Sanhita Roy Acharya":"CERT_1123.pdf","Sanjay Prasad":"CERT_1124.pdf","Sanjukta Chatterjee":"CERT_1125.pdf","Sapna Kumari":"CERT_1126.pdf","Sartaj Quraisi":"CERT_1127.pdf","Satya Prakash Nirala":"CERT_1128.pdf","Satyendra Kumar Jha":"CERT_1129.pdf","Saurav Kumar":"CERT_1130.pdf","Savitri kumari":"CERT_1131.pdf","Sawarya Chandra":"CERT_1132.pdf","Shailendra Kumar choudhary":"CERT_1133.pdf","Shital R Bakal":"CERT_1134.pdf","Shiva Shankar":"CERT_1135.pdf","Shivam Shekhar":"CERT_1136.pdf","Shobha Singh":"CERT_1137.pdf","Shubhangini Kamble":"CERT_1138.pdf","Silpa Mandal":"CERT_1139.pdf","Smriti Bharti":"CERT_1140.pdf","Soham Pal":"CERT_1141.pdf","Soma Bhattacharya":"CERT_1142.pdf","Sonu Kumar":"CERT_1143.pdf","Sourav Dutta":"CERT_1144.pdf","Subhash Kumar":"CERT_1145.pdf","Surbhi Sharma":"CERT_1146.pdf","Susmita Deb":"CERT_1147.pdf","Susmita Paul":"CERT_1148.pdf","Sutapa Mondal":"CERT_1149.pdf","Swarna Aishwarya Twinkle":"CERT_1150.pdf","Swati Minj":"CERT_1151.pdf","Thirupathi Sirisilla":"CERT_1152.pdf","Utpal Kumar Ray":"CERT_1153.pdf","Vaibhow Tigga":"CERT_1154.pdf","Vijeta P":"CERT_1155.pdf","Vijeta Prasad":"CERT_1156.pdf","Vinay Prakash Chaudhary":"CERT_1157.pdf","Vinodini Bhushan Bhole":"CERT_1158.pdf","Vishwajit Choudhary":"CERT_1159.pdf","Vivek Kumar Srivastava":"CERT_1160.pdf","Yadagiri J":"CERT_1161.pdf"};
+
+function triggerDownload(name) {
+  let filename = CERT_FILES[name];
+  if (!filename) {
+    const key = Object.keys(CERT_FILES).find(k => k.toLowerCase() === name.toLowerCase());
+    filename = key ? CERT_FILES[key] : null;
+  }
+  if (!filename) {
+    showToast('Certificate file not found for: ' + name);
+    return;
+  }
+  const link = document.createElement('a');
+  link.href = filename;
+  link.download = filename;
+  link.click();
+  showToast('Downloading certificate for ' + name + '…');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+buildAlphaNav();
+buildList();
 </script>
 </body>
 </html>
